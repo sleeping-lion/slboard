@@ -1,0 +1,7 @@
+<aside class="visible-lg">
+  <%= render :partial => 'blog_categories/aside' %>
+	<% unless @tags.empty? %>
+	<%= render :partial => 'blogs/tag_cloud' %>
+	<% end %>
+	<div class="clearfix"></div>
+</aside>

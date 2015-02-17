@@ -1,0 +1,50 @@
+<header>
+	<ul id="top_menu">
+		<% if user_signed_in? %>
+		<li><%=link_to current_user.name,edit_user_registration_path %><%=t(:welcome)%></li>
+		<li><%= link_to t(:logout),destroy_user_session_path %></li>
+		<% else %>
+		<li><%=link_to t(:new_user),new_user_registration_path %></li>
+		<li><%= link_to t(:login),new_user_session_path %></li>
+		<% end %>
+	</ul>	
+	<nav class="container">
+  <h1><%=link_to t(:home_title),root_path %></h1>
+		<ul class="nav nav-pills">
+  <li role="presentation" class="dropdown <% if params[:controller]=='intro' || params[:controller]=='histories' || params[:controller]=='installs' %> active"<% end %>">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+      <%=t('activerecord.models.intro') %> <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu">
+			<li><%=link_to installs_path do %><%=t('Install') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>    	
+			<li><%=link_to intro_index_path do %><%=t('activerecord.models.intro') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
+			<li><%=link_to histories_path do %><%=t('History') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>			
+    </ul>
+  </li>
+			<li <% if params[:controller]=='contacts' %>class="active"<% end %>>
+				<%=link_to new_contact_path do %><%=t('activerecord.models.contact') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>
+			<li <% if params[:controller]=='blogs' %>class="active"<% end %>>
+				<%=link_to blogs_path do %><%=t('activerecord.models.blog') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>
+			<li <% if params[:controller]=='galleries' %>class="active"<% end %>>
+				<%=link_to galleries_path do %><%=t('activerecord.models.gallery') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>
+			<li <% if params[:controller]=='questions' %>class="active"<% end %>>
+				<%=link_to questions_path do %><%=t('activerecord.models.question') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>
+			<li <% if params[:controller]=='faqs' %>class="active"<% end %>>
+				<%=link_to faqs_path do %><%=t('activerecord.models.faq') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>
+			<li <% if params[:controller]=='notices' %>class="active"<% end %>>
+				<%=link_to notices_path do %><%=t('activerecord.models.notice') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>
+			<li <% if params[:controller]=='guest_books' %>class="active"<% end %>>
+				<%=link_to guest_books_path do %><%=t('activerecord.models.guest_book') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>	
+			<li <% if params[:controller]=='portfolios' %>class="active"<% end %>>
+				<%=link_to portfolios_path do %><%=t('activerecord.models.portfolio') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %>
+			</li>				
+		</ul>
+	</nav>
+</header>
