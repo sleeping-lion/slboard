@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   create_table "faq_categories", force: true do |t|
     t.integer  "user_id",                   null: false
     t.string   "title",                     null: false
+    t.integer  "faqs_count", default: 0,    null: false
     t.boolean  "enable",     default: true, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
