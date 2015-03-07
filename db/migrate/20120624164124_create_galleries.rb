@@ -24,16 +24,16 @@ class CreateGalleries < ActiveRecord::Migration
     
     add_index :gallery_categories, :user_id    
     add_index :galleries, :user_id
-    add_index :galleries, :gallery_category_id    
+    add_index :galleries, :gallery_category_id
     
-#  GalleryCategory.create_translation_table! :title => {:type => :string, :limit=>60}
-#  Gallery.create_translation_table! :title => {:type => :string, :limit=>60}, :content=>:text, :location => {:type => :string, :limit => 60}
+    GalleryCategory.create_translation_table! :title => {:type => :string, :limit=>60}
+    Gallery.create_translation_table! :title => {:type => :string, :limit=>60}, :content=>:text, :location => {:type => :string, :limit => 60}
   end
   
   def down
     drop_table :gallery_categories
-    drop_table :galleries    
-#   GalleryCategory.drop_translation_table!
-#   Gallery.drop_translation_table!
+    drop_table :galleries
+    GalleryCategory.drop_translation_table!
+    Gallery.drop_translation_table!
   end
 end

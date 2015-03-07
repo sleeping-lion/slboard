@@ -5,7 +5,7 @@ class CreateBlogs < ActiveRecord::Migration
     create_table :blogs do |t|
       t.references :user, :null=>false
       t.references :blog_category, :null=>false
-      t.string :title, :null=>false, :limit=>60
+      t.string :title,:null=>false, :limit=>60
       t.string :description, :null=>false, :limit=>255
       t.string :photo
       t.integer :blog_comments_count, :default=>0, :null=>false
@@ -14,9 +14,8 @@ class CreateBlogs < ActiveRecord::Migration
       t.timestamps :null=>false
     end
     
-    create_table :blog_contents do |t|
-      t.text :content, :null=>false
-      t.timestamps :null=>false
+    create_table :blog_contents do |t|     
+      t.text :content       
     end
     
     create_table :blog_comments do |t|
@@ -33,19 +32,19 @@ class CreateBlogs < ActiveRecord::Migration
     add_index :blogs, :user_id    
     add_index :blogs, :blog_category_id
     add_index :blog_comments, :blog_id
-    add_index :blog_comments, :user_id  
+    add_index :blog_comments, :user_id
     
- #   Blog.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false},:description => {:type => :string, :limit=>255,:null=>false}    
- #   BlogContent.create_translation_table! :content=>{:type => :text,:null=>false}
- #   BlogComment.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false}, :content=>{:type => :text }
+    Blog.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false},:description => {:type => :string, :limit=>255,:null=>false}
+    BlogContent.create_translation_table! :content=>{:type => :text,:null=>false}
+    BlogComment.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false}, :content=>{:type => :text }
   end
   
   def down
     drop_table :blogs
     drop_table :blog_contents
-    drop_table :blog_comments    
- #   Blog.drop_translation_table!
- #   BlogContent.drop_translation_table!
- #   BlogComment.drop_translation_table!    
+    drop_table :blog_comments
+    Blog.drop_translation_table!
+    BlogContent.drop_translation_table!
+    BlogComment.drop_translation_table!    
   end
 end

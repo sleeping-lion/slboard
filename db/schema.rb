@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "blog_categories", ["blog_category_id"], name: "index_blog_categories_on_blog_category_id", using: :btree
   add_index "blog_categories", ["user_id"], name: "index_blog_categories_on_user_id", using: :btree
 
+  create_table "blog_comment_translations", force: true do |t|
+    t.integer  "blog_comment_id",            null: false
+    t.string   "locale",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",           limit: 60, null: false
+    t.text     "content"
+  end
+
+  add_index "blog_comment_translations", ["blog_comment_id"], name: "index_blog_comment_translations_on_blog_comment_id", using: :btree
+  add_index "blog_comment_translations", ["locale"], name: "index_blog_comment_translations_on_locale", using: :btree
+
   create_table "blog_comments", force: true do |t|
     t.integer  "blog_id",                       null: false
     t.integer  "user_id"
@@ -43,11 +55,32 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "blog_comments", ["blog_id"], name: "index_blog_comments_on_blog_id", using: :btree
   add_index "blog_comments", ["user_id"], name: "index_blog_comments_on_user_id", using: :btree
 
-  create_table "blog_contents", force: true do |t|
-    t.text     "content",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "blog_content_translations", force: true do |t|
+    t.integer  "blog_content_id", null: false
+    t.string   "locale",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "content",         null: false
   end
+
+  add_index "blog_content_translations", ["blog_content_id"], name: "index_blog_content_translations_on_blog_content_id", using: :btree
+  add_index "blog_content_translations", ["locale"], name: "index_blog_content_translations_on_locale", using: :btree
+
+  create_table "blog_contents", force: true do |t|
+    t.text "content"
+  end
+
+  create_table "blog_translations", force: true do |t|
+    t.integer  "blog_id",                null: false
+    t.string   "locale",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",       limit: 60, null: false
+    t.string   "description",            null: false
+  end
+
+  add_index "blog_translations", ["blog_id"], name: "index_blog_translations_on_blog_id", using: :btree
+  add_index "blog_translations", ["locale"], name: "index_blog_translations_on_locale", using: :btree
 
   create_table "blogs", force: true do |t|
     t.integer  "user_id",                                       null: false
@@ -108,8 +141,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "faq_categories", ["user_id"], name: "index_faq_categories_on_user_id", using: :btree
 
   create_table "faq_contents", force: true do |t|
-    t.boolean "html",    default: false, null: false
-    t.text    "content"
+    t.text "content"
   end
 
   create_table "faqs", force: true do |t|
@@ -151,6 +183,41 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   end
 
   add_index "gallery_categories", ["user_id"], name: "index_gallery_categories_on_user_id", using: :btree
+
+  create_table "gallery_category_translations", force: true do |t|
+    t.integer  "gallery_category_id",            null: false
+    t.string   "locale",                         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",               limit: 60
+  end
+
+  add_index "gallery_category_translations", ["gallery_category_id"], name: "index_gallery_category_translations_on_gallery_category_id", using: :btree
+  add_index "gallery_category_translations", ["locale"], name: "index_gallery_category_translations_on_locale", using: :btree
+
+  create_table "gallery_translations", force: true do |t|
+    t.integer  "gallery_id",            null: false
+    t.string   "locale",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",      limit: 60
+    t.text     "content"
+    t.string   "location",   limit: 60
+  end
+
+  add_index "gallery_translations", ["gallery_id"], name: "index_gallery_translations_on_gallery_id", using: :btree
+  add_index "gallery_translations", ["locale"], name: "index_gallery_translations_on_locale", using: :btree
+
+  create_table "group_translations", force: true do |t|
+    t.integer  "group_id",              null: false
+    t.string   "locale",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",      limit: 60, null: false
+  end
+
+  add_index "group_translations", ["group_id"], name: "index_group_translations_on_group_id", using: :btree
+  add_index "group_translations", ["locale"], name: "index_group_translations_on_locale", using: :btree
 
   create_table "groups", force: true do |t|
     t.string   "title",       limit: 60,                null: false
@@ -296,18 +363,18 @@ ActiveRecord::Schema.define(version: 20140505080021) do
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
-  create_table "resource_photos", force: true do |t|
-    t.integer  "resource_id",                           null: false
-    t.string   "photo",                                 null: false
-    t.string   "alt",         limit: 60,                null: false
-    t.boolean  "enable",                 default: true, null: false
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+  create_table "setting_controller_photos", force: true do |t|
+    t.integer  "setting_controller_id",                           null: false
+    t.string   "photo",                                           null: false
+    t.string   "alt",                   limit: 60,                null: false
+    t.boolean  "enable",                           default: true, null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
-  add_index "resource_photos", ["resource_id"], name: "index_resource_photos_on_resource_id", using: :btree
+  add_index "setting_controller_photos", ["setting_controller_id"], name: "index_setting_controller_photos_on_setting_controller_id", using: :btree
 
-  create_table "resources", force: true do |t|
+  create_table "setting_controllers", force: true do |t|
     t.integer  "ad_position_id",                              null: false
     t.string   "title",          limit: 60,                   null: false
     t.string   "description"
@@ -323,9 +390,14 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.datetime "updated_at",                                  null: false
   end
 
-  add_index "resources", ["ad_position_id"], name: "index_resources_on_ad_position_id", using: :btree
-  add_index "resources", ["controller"], name: "index_resources_on_controller", unique: true, using: :btree
-  add_index "resources", ["title"], name: "index_resources_on_title", unique: true, using: :btree
+  add_index "setting_controllers", ["ad_position_id"], name: "index_setting_controllers_on_ad_position_id", using: :btree
+  add_index "setting_controllers", ["controller"], name: "index_setting_controllers_on_controller", unique: true, using: :btree
+  add_index "setting_controllers", ["title"], name: "index_setting_controllers_on_title", unique: true, using: :btree
+
+  create_table "setting_global", force: true do |t|
+    t.string "title",       limit: 60, null: false
+    t.string "description",            null: false
+  end
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

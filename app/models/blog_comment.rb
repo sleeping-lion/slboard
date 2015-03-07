@@ -7,6 +7,6 @@ class BlogComment < ActiveRecord::Base
   validates_presence_of :content
   belongs_to :user, :autosave=>true  
   belongs_to :blog, :autosave=>true
-#  translates :title, :content  
+  translates :title, :content  
   mount_uploader :photo, BlogCommentUploader
 end

@@ -13,7 +13,7 @@ class Blog < ActiveRecord::Base
   has_many :blog_comment, :dependent=>:destroy
   accepts_nested_attributes_for :blog_content, :allow_destroy => true
   accepts_nested_attributes_for :blog_comment, :allow_destroy => true
-#  translates :title, :description
+  translates :title, :description
   mount_uploader :photo, BlogUploader
   
   def tag_list

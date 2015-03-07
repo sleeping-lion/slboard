@@ -3,7 +3,7 @@
 class CreateFaqs < ActiveRecord::Migration
   def change
     create_table :faq_categories do |t|
-      t.references :user, :null=>false      
+      t.references :user, :null=>false
       t.string :title,:null=>false
       t.integer :faqs_count, :null=>false, :default=>0      
       t.boolean :enable, :null=>false, :default=>true
@@ -20,8 +20,7 @@ class CreateFaqs < ActiveRecord::Migration
     end
     
     create_table :faq_contents do |t|
-      t.boolean :html,:default=>false,:null=>false      
-      t.text :content 
+      t.text :content      
     end
     
     add_index :faq_categories, :user_id    
