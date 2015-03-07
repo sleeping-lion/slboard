@@ -1,8 +1,13 @@
 # encoding: utf-8
 
-class CreateResources < ActiveRecord::Migration
+class CreateSettings < ActiveRecord::Migration
   def change
-    create_table :resources do |t|
+    create_table :setting_global do |t|    
+      t.string :title, :limit=>60, :null=>false
+      t.string :description, :limit=>255, :null=>false     
+    end 
+    
+    create_table :setting_controllers do |t|
       t.references :ad_position, :null=>false   
       t.string :title, :limit=>60, :null=>false
       t.string :description
@@ -17,8 +22,8 @@ class CreateResources < ActiveRecord::Migration
       t.timestamps :null=>false
     end
     
-    add_index :resources, :ad_position_id
-    add_index :resources, :title, :unique => true    
-    add_index :resources, :controller, :unique => true     
+    add_index :setting_controllers, :ad_position_id
+    add_index :setting_controllers, :title, :unique => true    
+    add_index :setting_controllers, :controller, :unique => true     
   end
 end
