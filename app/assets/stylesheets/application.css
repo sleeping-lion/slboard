@@ -119,12 +119,12 @@ footer address {margin-top:10px }
 .slboard_comment_index .media {border:1px dotted #ccc}
 .slboard_comment_index .close {margin-right:7px}
 
-#sl_board_faq_index {float:left;width:100%;margin:0}
-#sl_board_faq_index ol.nav-tabs {margin:0 0 10px}
-#sl_board_faq_index article {float:left;width:100%;margin:20px 0}
-#sl_board_faq_index article h3 {margin:0;padding:0}
-#sl_board_faq_index article h3 a {display:block;padding:10px}
-#sl_board_faq_index article h3 a:hover {text-decoration:none} 
+#sl_faq_index {float:left;width:100%;margin:0}
+#sl_faq_index ol.nav-tabs {margin:0 0 10px}
+#sl_faq_index article {float:left;width:100%;margin:20px 0}
+#sl_faq_index article h3 {margin:0;padding:0}
+#sl_faq_index article h3 a {display:block;padding:10px}
+#sl_faq_index article h3 a:hover {text-decoration:none} 
 
 /* portfolio */
 #sl_portfolio_index .media {border-bottom:1px dotted #ccc;padding-bottom:10px;margin-bottom:20px}

@@ -3,11 +3,10 @@
 <%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
 <% end %>
 <section id="sl_faq_index">	
-	<article>
-		<ol id="faqCategoryList">
-			<% unless @faq_categories.empty? %>			
+		<ol class="nav nav-tabs">
+			<% unless @faq_categories.empty? %>
 			<% @faq_categories.each do |faq_category| %>			
-			<li <% if(@categoryId==faq_category.id) %>class="on"<% end %>>
+			<li <% if(@categoryId==faq_category.id) %>class="active"<% end %>>
 				<%= link_to truncate(faq_category.title,:length => 20),faqs_path(:faq_category_id=>faq_category.id),{:class=>'title'} %>
 				<% if(@categoryId==faq_category.id) %>				
 				<% if can?(:update, FaqCategory) || can?(:delete, FaqCategory) %>
@@ -29,11 +28,10 @@
   		<% else %>
 			<li><%=t(:no_data)%></li>
 			<% end %>
-		</ol>		
-	</article>
+		</ol>	
 	<article>
-		<dl id="faqList">
-			<% unless @faqs.empty? %>		
+		<% unless @faqs.empty? %>			
+		<dl id="faqList">	
 			<% @faqs.each do |faq| %>
 			<dt <% if @faq %><% if @faq.id==faq.id %>class="on"<% end %><% end %>>
 				<%= link_to truncate(faq.title,:length => 80), faqs_path(:faq_category_id=>params[:faq_category_id],:id=>faq),{:class=>'title'} %>
@@ -57,13 +55,13 @@
 			<% end %>
 			<% end %>
 			
-			<% end %>	
-  			<% else %>	
-  			<dt><%=t(:no_data)%></dt>
 			<% end %>
-		</dl>
+			</dl>			
+  			<% else %>	
+  			<p><%=t(:no_data)%></p>
+			<% end %>
 	</article>
-	<div id="sl_bottom_menu">
+	<div id="sl_index_bottom_menu">
 		<% if can? :create, FaqCategory %>
 		<%= link_to 'FAQ 분류 생성',new_faq_category_path,:rel=>"nofollow" %>
 		<% end %> 
