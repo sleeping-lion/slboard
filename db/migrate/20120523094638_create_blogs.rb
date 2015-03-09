@@ -35,8 +35,8 @@ class CreateBlogs < ActiveRecord::Migration
     add_index :blog_comments, :user_id
     
     Blog.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false},:description => {:type => :string, :limit=>255,:null=>false}
-    BlogContent.create_translation_table! :content=>{:type => :text,:null=>false}
-    BlogComment.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false}, :content=>{:type => :text }
+    BlogContent.create_translation_table! :content=>{:type => :text,:null=>false}  
+    BlogComment.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false}, :content=>{:type => :text,:null=>false }
   end
   
   def down

@@ -1,13 +1,5 @@
 # encoding: UTF-8
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 Group.create(:id=>1,:title=>'admin')
 Group.create(:id=>2,:title=>'manage')
 Group.create(:id=>3,:title=>'user')
@@ -15,14 +7,6 @@ Group.create(:id=>4,:title=>'viewer')
 
 User.create(:id=>1,:group_id=>1,:email => 'toughjjh@gmail.com',:name=>'정종호',:password => 'jjh123456', :password_confirmation => 'jjh123456',:gender=>'남자',:alternate_name=>'잠자는-사자',:description=>'깨끗한 웹세상을 꿈꾸는 웹프로그래머 잠자는-사자입니다.', :job_title=>'웹프로그래머',:url=>'http://www.sleepinglion.pe.kr',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")),:intro=>true,:admin=>true)
 UserPhoto.create(:user_id=>1,:alt=>'jjh',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")))
-
-#AdPosition.create(:id=>1,:title=>'광고 표시안함',:position=>'none')
-#AdPosition.create(:id=>2,:title=>'위에 표시',:position=>'top')
-#AdPosition.create(:id=>3,:title=>'아래에 표시',:position=>'bottom')
-
-#BlogType.create(:id=>1,:title=>'일반형')
-#BlogType.create(:id=>2,:title=>'게시판형')
-#BlogType.create(:id=>3,:title=>'갤러리형') 
 
 GalleryCategory.create(:user_id=>1,:title=>'일상')
 GalleryCategory.create(:user_id=>1,:title=>'멍멍이')
@@ -58,6 +42,10 @@ BlogContent.create(:id=>1,:content=>'그동안 수많은 방문자에 비해서 
 Notice.create(:id=>1,:user_id=>1,:title=>'잠자는-사자의 집이 다시 개장했습니다.')
 NoticeContent.create(:id=>1,:content=>'그동안 수많은 방문자에 비해서 준비되지 못하였는데 이제 보다 업그레이드된 모습으로 다시 찾아뵙게되었습니다.
     잠자는-사자와 소통하는 공간으로 계속 많은 이용바랍니다.')
+    
+AdPosition.create!(:id=>1,:title=>'광고 표시안함',:position=>'none')
+AdPosition.create!(:id=>2,:title=>'위에 표시',:position=>'top')
+AdPosition.create!(:id=>3,:title=>'아래에 표시',:position=>'bottom')
 
 SettingController.create(:id=>1,:ad_position_id=>3,:title=>'메인',:menu_display=>false,:controller=>'home',:description=>'처음화면',:priority=>9000)
 SettingController.create(:id=>2,:ad_position_id=>3,:title=>'소개',:menu_display=>true,:controller=>'intro',:description=>'소개',:priority=>1000)

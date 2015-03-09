@@ -14,8 +14,10 @@ class CreateBlogCategories < ActiveRecord::Migration
       t.timestamps :null=>false
     end
     
+    
+    add_index :blog_categories, :title,  :unique => true    
     add_index :blog_categories, :blog_category_id
-    add_index :blog_categories, :user_id    
+    add_index :blog_categories, :user_id  
 #    add_index :blog_categories, :blog_type_id
     
 #    BlogCategory.create_translation_table! :title => {:type => :string, :limit=>60}    

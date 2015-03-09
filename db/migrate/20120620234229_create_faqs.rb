@@ -23,6 +23,7 @@ class CreateFaqs < ActiveRecord::Migration
       t.text :content      
     end
     
+    add_index :faq_categories, :title,  :unique => true    
     add_index :faq_categories, :user_id    
     add_index :faqs, :faq_category_id
     add_index :faqs, :user_id     
