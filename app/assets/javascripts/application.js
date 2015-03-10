@@ -22,7 +22,9 @@ $(document).ready(function(){
 	$('.modal_link').click(function(event){
   	event.preventDefault();
   	$('#myModal').removeData("modal");
-  	$('#myModal').modal({'remote':$(this).attr('href')+'?no_layout=true'});
+  	$('#myModal').load($(this).attr('href')+'?no_layout=true',function(){
+  		$('#myModal').modal();
+  		});
 	});
 
 	$(".btn_minimize").click(function(){

@@ -3,10 +3,10 @@
 class CreateContacts < ActiveRecord::Migration
   def change
     create_table :contacts do |t|
-      t.string :name, :limit=>60
-      t.string :email
-      t.string :phone, :limit=>40 
-      t.string :title,:limit=>60,:null=>false
+      t.string :name, :limit=>60, :null=>false
+      t.string :email, :null=>false
+      t.string :phone, :limit=>40
+      t.string :title,:limit=>60, :null=>false
       t.boolean :enable, :null=>false, :default=>true      
       t.timestamps :null=>false
     end

@@ -8,7 +8,6 @@ class CreateDeviseToUsers < ActiveRecord::Migration
       t.string :email,  :null => false
       t.string :name, :null => false, :limit=>60      
       t.string :encrypted_password, :null => false
-      t.string :photo
       t.string :description      
       t.string :alternate_name, :limit=>60
       t.boolean :gender, :default=>true      
