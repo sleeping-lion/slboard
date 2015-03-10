@@ -3,11 +3,11 @@
 <%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
 <% end %>
 <section id="sl_intro_index">
-	<% if @user %>
+	<% if @user_image %>
   <article id="intro_main_content" itemscope itemtype="http://schema.org/Person">
     <% if @user.photo? %>	
     <div id="sl_intro_left">
-      <%=link_to image_tag(@user_images[0].photo.large_thumb,:class=>'img-responsive',:alt=>@user.name),@user_images[0].photo.url,:class=>'simple_image',:title=>@user.name, :itemprop=>"image" %>
+      <%=link_to image_tag(@user.photo.large_thumb,:class=>'img-responsive',:alt=>@user.name),@user.photo.url,:class=>'simple_image',:title=>@user.name, :itemprop=>"image" %>
     </div>
     <% end %>
     <div id="sl_intro_right">
@@ -55,7 +55,7 @@
       <% @user_images.each_slice(6) do |user_image| %>
       <ul class="item">
         <% user_image.each_with_index do |user_image,index| %>
-        <li><%=link_to image_tag(user_image.photo.medium_thumb,:alt=>user_image.alt),intro_index_path(user_image),:title=>user_image.alt %></li>
+        <li><%=link_to image_tag(user_image.photo.medium_thumb,:alt=>user_image.alt),user_photo_path(user_image),:title=>user_image.alt %></li>
         <% end %>
       </ul>
       <% end %>
