@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20140505080021) do
 
+  create_table "ad_positions", force: true do |t|
+    t.string   "title",      limit: 60,                null: false
+    t.string   "position",   limit: 20,                null: false
+    t.boolean  "enable",                default: true, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "ad_positions", ["position"], name: "index_ad_positions_on_position", unique: true, using: :btree
+  add_index "ad_positions", ["title"], name: "index_ad_positions_on_title", unique: true, using: :btree
+
   create_table "blog_categories", force: true do |t|
     t.integer  "user_id",                                         null: false
     t.integer  "blog_category_id"
@@ -26,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   end
 
   add_index "blog_categories", ["blog_category_id"], name: "index_blog_categories_on_blog_category_id", using: :btree
+  add_index "blog_categories", ["title"], name: "index_blog_categories_on_title", unique: true, using: :btree
   add_index "blog_categories", ["user_id"], name: "index_blog_categories_on_user_id", using: :btree
 
   create_table "blog_comment_translations", force: true do |t|
@@ -34,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title",           limit: 60, null: false
-    t.text     "content"
+    t.text     "content",                    null: false
   end
 
   add_index "blog_comment_translations", ["blog_comment_id"], name: "index_blog_comment_translations_on_blog_comment_id", using: :btree
@@ -115,14 +127,13 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "contact_contents", force: true do |t|
-    t.boolean "html",    default: false, null: false
-    t.text    "content",                 null: false
+    t.text "content", null: false
   end
 
   create_table "contacts", force: true do |t|
-    t.string   "name",       limit: 60
-    t.string   "email"
-    t.string   "phone",      limit: 40
+    t.string   "name",       limit: 60,                null: false
+    t.string   "email",                                null: false
+    t.string   "phone",      limit: 40,                null: false
     t.string   "title",      limit: 60,                null: false
     t.boolean  "enable",                default: true, null: false
     t.datetime "created_at",                           null: false
@@ -138,6 +149,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.datetime "updated_at",                null: false
   end
 
+  add_index "faq_categories", ["title"], name: "index_faq_categories_on_title", unique: true, using: :btree
   add_index "faq_categories", ["user_id"], name: "index_faq_categories_on_user_id", using: :btree
 
   create_table "faq_contents", force: true do |t|
@@ -182,6 +194,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.datetime "updated_at",                                null: false
   end
 
+  add_index "gallery_categories", ["title"], name: "index_gallery_categories_on_title", unique: true, using: :btree
   add_index "gallery_categories", ["user_id"], name: "index_gallery_categories_on_user_id", using: :btree
 
   create_table "gallery_category_translations", force: true do |t|
@@ -297,8 +310,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "notice_contents", force: true do |t|
-    t.boolean "html",    default: false, null: false
-    t.text    "content",                 null: false
+    t.text "content", null: false
   end
 
   create_table "notices", force: true do |t|
@@ -317,15 +329,15 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   end
 
   create_table "portfolios", force: true do |t|
-    t.integer  "user_id",                    null: false
-    t.string   "title",                      null: false
-    t.string   "url",                        null: false
-    t.text     "description",                null: false
-    t.string   "photo",                      null: false
-    t.boolean  "enable",      default: true, null: false
-    t.integer  "count",       default: 0,    null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "user_id",                               null: false
+    t.string   "title",       limit: 60,                null: false
+    t.string   "url",                                   null: false
+    t.text     "description",                           null: false
+    t.string   "photo",                                 null: false
+    t.boolean  "enable",                 default: true, null: false
+    t.integer  "count",                  default: 0,    null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "portfolios", ["user_id"], name: "index_portfolios_on_user_id", using: :btree
@@ -419,12 +431,13 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "user_photos", force: true do |t|
-    t.integer  "user_id",                              null: false
-    t.string   "photo",                                null: false
-    t.string   "alt",        limit: 60,                null: false
-    t.boolean  "enable",                default: true, null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.integer  "user_id",                               null: false
+    t.string   "photo",                                 null: false
+    t.string   "alt",        limit: 60,                 null: false
+    t.boolean  "default",               default: false, null: false
+    t.boolean  "enable",                default: true,  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "user_photos", ["user_id"], name: "index_user_photos_on_user_id", using: :btree
@@ -434,7 +447,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.string   "email",                                             null: false
     t.string   "name",                   limit: 60,                 null: false
     t.string   "encrypted_password",                                null: false
-    t.string   "photo"
+    t.string   "photo",                                             null: false
     t.string   "description"
     t.string   "alternate_name",         limit: 60
     t.boolean  "gender",                            default: true
