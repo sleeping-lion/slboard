@@ -1,11 +1,11 @@
 # encoding: UTF-8
 
-Group.create(:id=>1,:title=>'admin')
-Group.create(:id=>2,:title=>'manage')
-Group.create(:id=>3,:title=>'user')
-Group.create(:id=>4,:title=>'viewer')
+Group.create(:id=>1,:title=>'admins')
+Group.create(:id=>2,:title=>'managers')
+Group.create(:id=>3,:title=>'users')
+Group.create(:id=>4,:title=>'viewers')
 
-User.create(:id=>1,:group_id=>1,:email => 'toughjjh@gmail.com',:name=>'정종호',:password => 'jjh123456', :password_confirmation => 'jjh123456',:gender=>'남자',:alternate_name=>'잠자는-사자',:description=>'깨끗한 웹세상을 꿈꾸는 웹프로그래머 잠자는-사자입니다.', :job_title=>'웹프로그래머',:url=>'http://www.sleepinglion.pe.kr',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")),:intro=>true,:admin=>true)
+User.create(:id=>1,:group_id=>1,:email => 'toughjjh@gmail.com',:name=>'정종호',:nickname=>'잠자는-사자',:password => 'jjh123456', :password_confirmation => 'jjh123456',:gender=>'남자',:alternate_name=>'잠자는-사자',:description=>'깨끗한 웹세상을 꿈꾸는 웹프로그래머 잠자는-사자입니다.', :job_title=>'웹프로그래머',:url=>'http://www.sleepinglion.pe.kr',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")),:intro=>true,:admin=>true)
 UserPhoto.create(:user_id=>1,:alt=>'jjh',:photo=>File.open(Rails.root.join("app", "assets", "images", "intro", "sl.jpg")))
 
 GalleryCategory.create(:user_id=>1,:title=>'일상')

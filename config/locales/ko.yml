@@ -1,5 +1,5 @@
 ko:
-  application_name : '웹프로그래머 잠자는사자의 집'
+  application_name : 'SLBoard에 오신것을 환영합니다.'
   meta_description : '깨끗한웹을 꿈꾸는 웹프로그래머 잠자는사자의 집입니다.'
   meta_description_intro : '웹프로그래머 잠자는사자를 여러분께 소개합니다.' 
   meta_description_about : '웹프로그래머 잠자는 사자의 집소개'  
@@ -28,6 +28,7 @@ ko:
   flag_false : '중지'
   no_data : '글이 없습니다.'
   all_category : '전체'  
+  new_user : '회원가입'
   
   home_main_title : '잠자는사자의 집에 오신것을 환영합니다.'
   home_main_description : '웹프로그래머 잠자는-사자입니다.'  

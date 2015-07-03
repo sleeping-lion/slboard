@@ -25,6 +25,7 @@ $(document).ready(function(){
   	$('#myModal').load($(this).attr('href')+'?no_layout=true',function(){
   		$('#myModal').modal();
   		});
+  	return false;
 	});
 
 	$(".btn_minimize").click(function(){
