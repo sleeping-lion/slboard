@@ -10,7 +10,7 @@
 	:viewport => "width=device-width, initial-scale=1.0",
 	:reverse => true %>
 <meta name="author" content="Sleeping-Lion" />
-<link rel="shortcut icon" href="<%=asset_path('favicon.ico') %>" />
+<%= favicon_link_tag %>
 <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css", :media => "all" %>
 <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 <%= csrf_meta_tags %>
