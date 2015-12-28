@@ -8,6 +8,7 @@ class CreatePortfolios < ActiveRecord::Migration
       t.string :url, :null=>false
       t.text :description, :null=>false
       t.string :photo,:null=>false
+      t.integer :count, :null=>false, :default=>0      
       t.boolean :enable, :null=>false, :default=>true
       t.integer :count, :null=>false, :default=>0    
       t.timestamps :null=>false
