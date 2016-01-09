@@ -7,6 +7,7 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :title, :limit=>60, :null=>false
       t.string :name, :limit=>60
       t.string :encrypted_password,:limit=>40
+      t.string :salt, :limit=>100      
       t.boolean :secret, :default=>0, :null=>false
       t.integer :question_comments_count, :default=>0, :null=>false
       t.integer :count, :null=>false, :default=>0      
@@ -24,10 +25,6 @@ class CreateQuestions < ActiveRecord::Migration
       t.string :name,:limit=>60
       t.string :encrypted_password,:limit=>40
       t.string :salt,:limit=>40
-      t.integer :comment_group_id
-      t.integer :comment_parent_id 
-      t.string :comment_order
-      t.integer :depth
       t.text :content,:null=>false
       t.timestamps :null=>false
     end

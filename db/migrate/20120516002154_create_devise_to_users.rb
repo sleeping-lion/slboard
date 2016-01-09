@@ -5,12 +5,12 @@ class CreateDeviseToUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.references :group, :null=>false      
       ## Database authenticatable
-      t.string :email,  :null => false
+      t.string :email,  :null => false      
       t.string :name, :null => false, :limit=>60
       t.string :nickname, :null => false, :limit=>60
+      t.string :photo, :null=>false
       t.string :encrypted_password, :null => false
-      t.string :photo, :null=>false      
-      t.string :description
+      t.string :description      
       t.string :alternate_name, :limit=>60
       t.boolean :gender, :default=>true      
       t.date :birth_date

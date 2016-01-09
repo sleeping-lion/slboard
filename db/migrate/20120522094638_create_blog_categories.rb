@@ -19,8 +19,8 @@ class CreateBlogCategories < ActiveRecord::Migration
     add_index :blog_categories, :blog_category_id
     add_index :blog_categories, :user_id  
 #    add_index :blog_categories, :blog_type_id
-    
-#    BlogCategory.create_translation_table! :title => {:type => :string, :limit=>60}    
+
+    BlogCategory.create_translation_table! :title => {:type => :string, :limit=>60}    
   end
   
   def down

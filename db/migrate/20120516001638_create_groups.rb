@@ -9,7 +9,9 @@ class CreateGroups < ActiveRecord::Migration
       t.timestamps :null=>false
     end
     
-    Group.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false}  
+    Group.create_translation_table! :title => {:type => :string, :limit=>60,:null=>false}
+    
+    add_index :groups, :title, :unique => true    
   end
   
   def down
