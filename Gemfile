@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.0.8'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -34,15 +34,14 @@ gem 'ckeditor', :path=>"vendor/gems/ckeditor"
 gem 'fancybox2-rails', :path=>"vendor/gems/fancybox2-rails"
 #gem 'sprockets-webp'
 #gem 'carrierwave-webp'
-gem 'globalize', '~> 4.0.0'
+gem 'globalize', '~> 4.0.2'
 gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
-gem 'dotenv-rails'
 gem 'meta-tags'
 gem 'gretel'
 gem 'acts-as-taggable-on'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -58,8 +57,10 @@ group :development, :test do
 end
 
 group :production do
-  gem 'recaptcha'  
   gem 'asset_sync'
   gem 'thin'
   gem 'connect'
+  gem 'redis-rails'
+  gem 'dotenv-rails'
+  gem 'recaptcha', :require => 'recaptcha/rails'
 end
