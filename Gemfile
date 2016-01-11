@@ -20,7 +20,7 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
-gem 'devise', '~> 3.0.0.rc'
+gem 'devise', '~> 3.5.0'
 gem 'cancan'
 gem 'kaminari'
 gem 'carrierwave'
@@ -52,8 +52,8 @@ group :development, :test do
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.0.0'
-#  gem 'sqlite3'
-  gem 'spring'  
+  gem 'sqlite3'
+ 
 end
 
 group :production do

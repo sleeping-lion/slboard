@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "blog_categories", ["title"], name: "index_blog_categories_on_title", unique: true, using: :btree
   add_index "blog_categories", ["user_id"], name: "index_blog_categories_on_user_id", using: :btree
 
+  create_table "blog_category_translations", force: true do |t|
+    t.integer  "blog_category_id",            null: false
+    t.string   "locale",                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title",            limit: 60
+  end
+
+  add_index "blog_category_translations", ["blog_category_id"], name: "index_blog_category_translations_on_blog_category_id", using: :btree
+  add_index "blog_category_translations", ["locale"], name: "index_blog_category_translations_on_locale", using: :btree
+
   create_table "blog_comment_translations", force: true do |t|
     t.integer  "blog_comment_id",            null: false
     t.string   "locale",                     null: false
@@ -240,16 +251,14 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.datetime "updated_at",                            null: false
   end
 
+  add_index "groups", ["title"], name: "index_groups_on_title", unique: true, using: :btree
+
   create_table "guest_book_comments", force: true do |t|
     t.integer  "guest_book_id",                 null: false
     t.integer  "user_id"
     t.string   "name",               limit: 60
     t.string   "encrypted_password", limit: 40
     t.string   "salt",               limit: 40
-    t.integer  "comment_group_id"
-    t.integer  "comment_parent_id"
-    t.string   "comment_order"
-    t.integer  "depth"
     t.text     "content",                       null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
@@ -264,14 +273,15 @@ ActiveRecord::Schema.define(version: 20140505080021) do
 
   create_table "guest_books", force: true do |t|
     t.integer  "user_id"
-    t.string   "title",                     limit: 60,                null: false
+    t.string   "title",                     limit: 60,                 null: false
     t.string   "name",                      limit: 60
     t.string   "encrypted_password",        limit: 40
-    t.integer  "guest_book_comments_count",            default: 0,    null: false
-    t.integer  "count",                                default: 0,    null: false
-    t.boolean  "enable",                               default: true, null: false
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.string   "salt",                      limit: 100
+    t.integer  "guest_book_comments_count",             default: 0,    null: false
+    t.integer  "count",                                 default: 0,    null: false
+    t.boolean  "enable",                                default: true, null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   add_index "guest_books", ["user_id"], name: "index_guest_books_on_user_id", using: :btree
@@ -338,8 +348,8 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.string   "url",                                   null: false
     t.text     "description",                           null: false
     t.string   "photo",                                 null: false
-    t.boolean  "enable",                 default: true, null: false
     t.integer  "count",                  default: 0,    null: false
+    t.boolean  "enable",                 default: true, null: false
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
@@ -352,10 +362,6 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.string   "name",               limit: 60
     t.string   "encrypted_password", limit: 40
     t.string   "salt",               limit: 40
-    t.integer  "comment_group_id"
-    t.integer  "comment_parent_id"
-    t.string   "comment_order"
-    t.integer  "depth"
     t.text     "content",                       null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
@@ -370,15 +376,16 @@ ActiveRecord::Schema.define(version: 20140505080021) do
 
   create_table "questions", force: true do |t|
     t.integer  "user_id"
-    t.string   "title",                   limit: 60,                 null: false
+    t.string   "title",                   limit: 60,                  null: false
     t.string   "name",                    limit: 60
     t.string   "encrypted_password",      limit: 40
-    t.boolean  "secret",                             default: false, null: false
-    t.integer  "question_comments_count",            default: 0,     null: false
-    t.integer  "count",                              default: 0,     null: false
-    t.boolean  "enable",                             default: true,  null: false
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.string   "salt",                    limit: 100
+    t.boolean  "secret",                              default: false, null: false
+    t.integer  "question_comments_count",             default: 0,     null: false
+    t.integer  "count",                               default: 0,     null: false
+    t.boolean  "enable",                              default: true,  null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
@@ -455,8 +462,8 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.string   "email",                                             null: false
     t.string   "name",                   limit: 60,                 null: false
     t.string   "nickname",               limit: 60,                 null: false
-    t.string   "encrypted_password",                                null: false
     t.string   "photo",                                             null: false
+    t.string   "encrypted_password",                                null: false
     t.string   "description"
     t.string   "alternate_name",         limit: 60
     t.boolean  "gender",                            default: true
