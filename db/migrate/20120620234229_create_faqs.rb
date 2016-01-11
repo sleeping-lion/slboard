@@ -11,8 +11,8 @@ class CreateFaqs < ActiveRecord::Migration
     end  
   
     create_table :faqs do |t|
-      t.references :faq_category,:null=>false   
       t.references :user,:null=>false
+      t.references :faq_category,:null=>false
       t.string :title,:null=>false
       t.integer :count,:default=>0,:null=>false
       t.boolean :enable, :null=>false, :default=>true      
