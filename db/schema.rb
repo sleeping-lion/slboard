@@ -168,8 +168,8 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   end
 
   create_table "faqs", force: true do |t|
-    t.integer  "faq_category_id",                null: false
     t.integer  "user_id",                        null: false
+    t.integer  "faq_category_id",                null: false
     t.string   "title",                          null: false
     t.integer  "count",           default: 0,    null: false
     t.boolean  "enable",          default: true, null: false
@@ -323,6 +323,48 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
+  create_table "intro_like_n_hates", force: true do |t|
+    t.integer  "intro_id",                              null: false
+    t.string   "title",      limit: 60,                 null: false
+    t.boolean  "hate",                  default: false, null: false
+    t.boolean  "enable",                default: true,  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "intro_like_n_hates", ["intro_id"], name: "index_intro_like_n_hates_on_intro_id", using: :btree
+
+  create_table "intro_photos", force: true do |t|
+    t.integer  "intro_id",                              null: false
+    t.string   "photo",                                 null: false
+    t.string   "alt",        limit: 60,                 null: false
+    t.boolean  "default",               default: false, null: false
+    t.boolean  "enable",                default: true,  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "intro_photos", ["intro_id"], name: "index_intro_photos_on_intro_id", using: :btree
+
+  create_table "intros", force: true do |t|
+    t.integer  "user_id",                                     null: false
+    t.string   "title",             limit: 60,                null: false
+    t.string   "alternate_name",    limit: 60
+    t.boolean  "gender",                       default: true
+    t.date     "birth_date"
+    t.date     "death_date"
+    t.integer  "height"
+    t.integer  "weight"
+    t.string   "url"
+    t.string   "job_title",         limit: 60
+    t.integer  "user_photos_count",            default: 0,    null: false
+    t.boolean  "enable",                       default: true, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "intros", ["user_id"], name: "index_intros_on_user_id", using: :btree
+
   create_table "notice_contents", force: true do |t|
     t.text "content", null: false
   end
@@ -427,9 +469,9 @@ ActiveRecord::Schema.define(version: 20140505080021) do
   end
 
   create_table "taggings", force: true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
+    t.integer  "tag_id",                    null: false
+    t.integer  "taggable_id",               null: false
+    t.string   "taggable_type",             null: false
     t.integer  "tagger_id"
     t.string   "tagger_type"
     t.string   "context",       limit: 128
@@ -465,12 +507,6 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.string   "photo",                                             null: false
     t.string   "encrypted_password",                                null: false
     t.string   "description"
-    t.string   "alternate_name",         limit: 60
-    t.boolean  "gender",                            default: true
-    t.date     "birth_date"
-    t.date     "death_date"
-    t.string   "url"
-    t.string   "job_title",              limit: 60
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -479,9 +515,7 @@ ActiveRecord::Schema.define(version: 20140505080021) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.integer  "user_photos_count",                 default: 0,     null: false
     t.boolean  "admin",                             default: false, null: false
-    t.boolean  "intro",                             default: false, null: false
     t.boolean  "enable",                            default: true,  null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
