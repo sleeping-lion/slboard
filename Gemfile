@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.8'
+gem 'rails', '>= 4.2.5'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'bootstrap-sass'
 gem 'jbuilder', '~> 1.2'
 gem 'devise', '~> 3.5.0'
 gem 'cancan'
@@ -34,7 +35,7 @@ gem 'ckeditor', :path=>"vendor/gems/ckeditor"
 gem 'fancybox2-rails', :path=>"vendor/gems/fancybox2-rails"
 #gem 'sprockets-webp'
 #gem 'carrierwave-webp'
-gem 'globalize', '~> 4.0.2'
+gem 'globalize', github: 'ncri/globalize'
 gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
